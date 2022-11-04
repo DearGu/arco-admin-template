@@ -1,0 +1,21 @@
+{
+  "vue": {
+    "prefix": "vue",
+    "body": [
+      "<template>",
+      "\t<div$3>",
+      "\t\t$0",
+      "\t</div>",
+      "</template>",
+      "\t",
+      "<script setup lang=\"ts\">",
+      "\t",
+      "</script>",
+      "\t",
+      "<style scoped lang=\"less\">",
+      "\t",
+      "</style>"
+    ],
+    "description": "vue"
+  }
+}

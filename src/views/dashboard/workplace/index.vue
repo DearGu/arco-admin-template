@@ -2,20 +2,20 @@
   <div class="container">
     <div class="left-side">
       <div class="panel">
-        <Banner />
-        <DataPanel />
-        <ContentChart />
+        <banner />
+        <data-panel />
+        <content-chart />
       </div>
       <a-grid :cols="24" :col-gap="16" :row-gap="16" style="margin-top: 16px">
         <a-grid-item
           :span="{ xs: 24, sm: 24, md: 24, lg: 12, xl: 12, xxl: 12 }"
         >
-          <PopularContent />
+          <popular-content />
         </a-grid-item>
         <a-grid-item
           :span="{ xs: 24, sm: 24, md: 24, lg: 12, xl: 12, xxl: 12 }"
         >
-          <CategoriesPercent />
+          <categories-percent />
         </a-grid-item>
       </a-grid>
     </div>
@@ -23,18 +23,18 @@
       <a-grid :cols="24" :row-gap="16">
         <a-grid-item :span="24">
           <div class="panel moduler-wrap">
-            <QuickOperation />
-            <RecentlyVisited />
+            <quick-operation />
+            <recently-visited />
           </div>
         </a-grid-item>
         <a-grid-item class="panel" :span="24">
-          <Carousel />
+          <carousel />
         </a-grid-item>
         <a-grid-item class="panel" :span="24">
-          <Announcement />
+          <announcement />
         </a-grid-item>
         <a-grid-item class="panel" :span="24">
-          <Docs />
+          <docs />
         </a-grid-item>
       </a-grid>
     </div>
@@ -42,16 +42,16 @@
 </template>
 
 <script lang="ts" setup>
-  import Banner from './components/banner.vue';
-  import DataPanel from './components/data-panel.vue';
-  import ContentChart from './components/content-chart.vue';
-  import PopularContent from './components/popular-content.vue';
-  import CategoriesPercent from './components/categories-percent.vue';
-  import RecentlyVisited from './components/recently-visited.vue';
-  import QuickOperation from './components/quick-operation.vue';
   import Announcement from './components/announcement.vue';
+  import Banner from './components/banner.vue';
   import Carousel from './components/carousel.vue';
+  import CategoriesPercent from './components/categories-percent.vue';
+  import ContentChart from './components/content-chart.vue';
+  import DataPanel from './components/data-panel.vue';
   import Docs from './components/docs.vue';
+  import PopularContent from './components/popular-content.vue';
+  import QuickOperation from './components/quick-operation.vue';
+  import RecentlyVisited from './components/recently-visited.vue';
 </script>
 
 <script lang="ts">
@@ -83,13 +83,16 @@
     border-radius: 4px;
     overflow: auto;
   }
+
   :deep(.panel-border) {
     margin-bottom: 0;
     border-bottom: 1px solid rgb(var(--gray-2));
   }
+
   .moduler-wrap {
     border-radius: 4px;
     background-color: var(--color-bg-2);
+
     :deep(.text) {
       font-size: 12px;
       text-align: center;
@@ -106,11 +109,13 @@
           margin-bottom: 0;
         }
       }
+
       &:hover {
         .icon {
           color: rgb(var(--arcoblue-6));
           background-color: #e8f3ff;
         }
+
         .text {
           color: rgb(var(--arcoblue-6));
         }
@@ -138,6 +143,7 @@
     .container {
       display: block;
     }
+
     .right-side {
       // display: none;
       width: 100%;

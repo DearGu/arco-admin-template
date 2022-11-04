@@ -1,11 +1,23 @@
-import { resolve } from 'path';
-import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
+import { resolve } from 'path';
+import { defineConfig } from 'vite';
+import VueSetupExtend from 'vite-plugin-vue-setup-extend';
 import svgLoader from 'vite-svg-loader';
+import eslintPlugin from 'vite-plugin-eslint';
 
 export default defineConfig({
-  plugins: [vue(), vueJsx(), svgLoader({ svgoConfig: {} })],
+  plugins: [
+    vue({
+      reactivityTransform: true,
+    }),
+    VueSetupExtend(),
+    vueJsx(),
+    svgLoader({ svgoConfig: {} }),
+    eslintPlugin({
+      include: ['src/**/*.js', 'src/**/*.vue', 'src/*.js', 'src/*.vue'],
+    }),
+  ],
   resolve: {
     alias: [
       {

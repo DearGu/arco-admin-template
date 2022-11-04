@@ -46,7 +46,7 @@
           <a-checkbox
             checked="rememberPassword"
             :model-value="loginConfig.rememberPassword"
-            @change="(setRememberPassword as any)"
+            @change="setRememberPassword as any"
           >
             {{ $t('login.form.rememberPassword') }}
           </a-checkbox>
@@ -67,7 +67,7 @@
   import { ref, reactive } from 'vue';
   import { useRouter } from 'vue-router';
   import { Message } from '@arco-design/web-vue';
-  import { ValidatedError } from '@arco-design/web-vue/es/form/interface';
+  import type { ValidatedError } from '@arco-design/web-vue/es/form/interface';
   import { useI18n } from 'vue-i18n';
   import { useStorage } from '@vueuse/core';
   import { useUserStore } from '@/store';

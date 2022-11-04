@@ -1,8 +1,8 @@
-import axios from 'axios';
-import type { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { Message, Modal } from '@arco-design/web-vue';
 import { useUserStore } from '@/store';
 import { getToken } from '@/utils/auth';
+import { Message, Modal } from '@arco-design/web-vue';
+import type { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios from 'axios';
 
 export interface HttpResponse<T = unknown> {
   status: number;
@@ -30,10 +30,9 @@ axios.interceptors.request.use(
     }
     return config;
   },
-  (error) => {
+  (error) =>
     // do something
-    return Promise.reject(error);
-  }
+    Promise.reject(error)
 );
 // add response interceptors
 axios.interceptors.response.use(

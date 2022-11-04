@@ -1,9 +1,9 @@
-import Mock from 'mockjs';
 import setupMock, { successResponseWrap } from '@/utils/setup-mock';
+import Mock from 'mockjs';
 
 const haveReadIds: number[] = [];
-const getMessageList = () => {
-  return [
+const getMessageList = () =>
+  [
     {
       id: 1,
       type: 'message',
@@ -68,13 +68,12 @@ const getMessageList = () => {
     ...item,
     status: haveReadIds.indexOf(item.id) === -1 ? 0 : 1,
   }));
-};
 
 setupMock({
   setup: () => {
-    Mock.mock(new RegExp('/api/message/list'), () => {
-      return successResponseWrap(getMessageList());
-    });
+    Mock.mock(new RegExp('/api/message/list'), () =>
+      successResponseWrap(getMessageList())
+    );
 
     Mock.mock(new RegExp('/api/message/read'), (params: { body: string }) => {
       const { ids } = JSON.parse(params.body);

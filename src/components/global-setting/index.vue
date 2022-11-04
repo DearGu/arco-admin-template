@@ -16,8 +16,8 @@
     @cancel="cancel"
   >
     <template #title> {{ $t('settings.title') }} </template>
-    <Block :options="contentOpts" :title="$t('settings.content')" />
-    <Block :options="othersOpts" :title="$t('settings.otherSettings')" />
+    <block :options="contentOpts" :title="$t('settings.content')" />
+    <block :options="othersOpts" :title="$t('settings.otherSettings')" />
     <a-alert>{{ $t('settings.alertContent') }}</a-alert>
   </a-drawer>
 </template>

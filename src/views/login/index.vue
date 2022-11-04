@@ -7,20 +7,20 @@
       />
       <div class="logo-text">Arco Design Pro</div>
     </div>
-    <LoginBanner />
+    <login-banner />
     <div class="content">
       <div class="content-inner">
-        <LoginForm />
+        <login-form />
       </div>
-      <div class="footer">
-        <Footer />
-      </div>
+      <!-- <div class="footer">
+        <footer />
+      </div> -->
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-  import Footer from '@/components/footer/index.vue';
+  // import Footer from '@/components/footer/index.vue';
   import LoginBanner from './components/banner.vue';
   import LoginForm from './components/login-form.vue';
 </script>

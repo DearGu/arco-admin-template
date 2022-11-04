@@ -26,7 +26,8 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:import/typescript',
     'plugin:vue/vue3-recommended',
-    'plugin:prettier/recommended',
+    // 'plugin:prettier/recommended',
+    'prettier',
   ],
   settings: {
     'import/resolver': {
@@ -36,7 +37,7 @@ module.exports = {
     },
   },
   rules: {
-    'prettier/prettier': 1,
+    // 'prettier/prettier': 1,
     // Vue: Recommended rules to be closed or modify
     'vue/require-default-prop': 0,
     'vue/singleline-html-element-content-newline': 0,
@@ -47,6 +48,19 @@ module.exports = {
     'vue/padding-line-between-blocks': 1,
     'vue/require-direct-export': 1,
     'vue/multi-word-component-names': 0,
+    'vue/component-name-in-template-casing': [
+      'error',
+      'kebab-case',
+      { registeredComponentsOnly: false },
+    ],
+    'vue/html-self-closing': [
+      'error',
+      {
+        html: {
+          void: 'always',
+        },
+      },
+    ],
     // Allow @ts-ignore comment
     '@typescript-eslint/ban-ts-comment': 0,
     '@typescript-eslint/no-unused-vars': 1,
@@ -66,5 +80,19 @@ module.exports = {
     'no-param-reassign': 0,
     'prefer-regex-literals': 0,
     'import/no-extraneous-dependencies': 0,
+    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        selector: ['interface', 'typeAlias', 'enum', 'class'],
+        format: ['StrictPascalCase'],
+      },
+    ],
+    '@typescript-eslint/consistent-type-imports': 'error',
+    // '@typescript-eslint/no-unsafe-call': 'error',
+    // '@typescript-eslint/no-unsafe-member-access': 'error',
+    // '@typescript-eslint/no-unsafe-assignment': 'error',
   },
 };
