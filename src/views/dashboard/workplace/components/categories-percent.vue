@@ -10,7 +10,7 @@
       <template #title>
         {{ $t('workplace.categoriesPercent') }}
       </template>
-      <Chart height="310px" :option="chartOption" />
+      <chart height="310px" :option="chartOption" />
     </a-card>
   </a-spin>
 </template>
@@ -20,10 +20,10 @@
   import useChartOption from '@/hooks/chart-option';
 
   const { loading } = useLoading();
-  const { chartOption } = useChartOption((isDark) => {
+  const { chartOption } = useChartOption((isDark) =>
     // echarts support https://echarts.apache.org/zh/theme-builder.html
     // It's not used here
-    return {
+    ({
       legend: {
         left: 'center',
         data: ['纯文本', '图文类', '视频类'],
@@ -107,8 +107,8 @@
           ],
         },
       ],
-    };
-  });
+    })
+  );
 </script>
 
 <style scoped lang="less"></style>

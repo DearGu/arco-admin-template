@@ -12,7 +12,7 @@
             />
           </div>
         </div>
-        <div class="tag-bar-operation"></div>
+        <div class="tag-bar-operation" />
       </div>
     </a-affix>
   </div>
@@ -32,12 +32,8 @@
   const tabBarStore = useTabBarStore();
 
   const affixRef = ref();
-  const tagList = computed(() => {
-    return tabBarStore.getTabList;
-  });
-  const offsetTop = computed(() => {
-    return appStore.navbar ? 60 : 0;
-  });
+  const tagList = computed(() => tabBarStore.getTabList);
+  const offsetTop = computed(() => (appStore.navbar ? 60 : 0));
 
   watch(
     () => appStore.navbar,
@@ -63,39 +59,43 @@
   .tab-bar-container {
     position: relative;
     background-color: var(--color-bg-2);
-    .tab-bar-box {
-      display: flex;
-      padding: 0 0 0 20px;
-      background-color: var(--color-bg-2);
-      border-bottom: 1px solid var(--color-border);
-      .tab-bar-scroll {
-        height: 32px;
-        flex: 1;
-        overflow: hidden;
-        .tags-wrap {
-          padding: 4px 0;
-          height: 48px;
-          white-space: nowrap;
-          overflow-x: auto;
+  }
 
-          :deep(.arco-tag) {
-            display: inline-flex;
-            align-items: center;
-            margin-right: 6px;
-            cursor: pointer;
-            &:first-child {
-              .arco-tag-close-btn {
-                display: none;
-              }
-            }
-          }
+  .tab-bar-box {
+    display: flex;
+    padding: 0 0 0 20px;
+    background-color: var(--color-bg-2);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .tab-bar-scroll {
+    height: 32px;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .tags-wrap {
+    padding: 4px 0;
+    height: 48px;
+    white-space: nowrap;
+    overflow-x: auto;
+
+    :deep(.arco-tag) {
+      display: inline-flex;
+      align-items: center;
+      margin-right: 6px;
+      cursor: pointer;
+
+      &:first-child {
+        .arco-tag-close-btn {
+          display: none;
         }
       }
     }
+  }
 
-    .tag-bar-operation {
-      width: 100px;
-      height: 32px;
-    }
+  .tag-bar-operation {
+    width: 100px;
+    height: 32px;
   }
 </style>

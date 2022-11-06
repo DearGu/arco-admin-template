@@ -1,5 +1,5 @@
 import { computed } from 'vue';
-import { RouteRecordRaw, RouteRecordNormalized } from 'vue-router';
+import type { RouteRecordRaw, RouteRecordNormalized } from 'vue-router';
 import usePermission from '@/hooks/permission';
 import { useAppStore } from '@/store';
 import appClientMenus from '@/router/app-menus';
@@ -15,9 +15,10 @@ export default function useMenuTree() {
   });
   const menuTree = computed(() => {
     const copyRouter = JSON.parse(JSON.stringify(appRoute.value));
-    copyRouter.sort((a: RouteRecordNormalized, b: RouteRecordNormalized) => {
-      return (a.meta.order || 0) - (b.meta.order || 0);
-    });
+    copyRouter.sort(
+      (a: RouteRecordNormalized, b: RouteRecordNormalized) =>
+        (a.meta.order || 0) - (b.meta.order || 0)
+    );
     function travel(_routes: RouteRecordRaw[], layer: number) {
       if (!_routes) return null;
 

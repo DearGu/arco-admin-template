@@ -57,7 +57,8 @@
 </template>
 
 <script lang="ts" setup>
-  import { PropType, computed } from 'vue';
+  import type { PropType } from 'vue';
+  import { computed } from 'vue';
   import { useRouter, useRoute } from 'vue-router';
   import { useTabBarStore } from '@/store';
   import type { TagProps } from '@/store/modules/tab-bar/types';
@@ -93,25 +94,19 @@
   const goto = (tag: TagProps) => {
     router.push({ ...tag });
   };
-  const tagList = computed(() => {
-    return tabBarStore.getTabList;
-  });
+  const tagList = computed(() => tabBarStore.getTabList);
 
-  const disabledReload = computed(() => {
-    return props.itemData.fullPath !== route.fullPath;
-  });
+  const disabledReload = computed(
+    () => props.itemData.fullPath !== route.fullPath
+  );
 
-  const disabledCurrent = computed(() => {
-    return props.index === 0;
-  });
+  const disabledCurrent = computed(() => props.index === 0);
 
-  const disabledLeft = computed(() => {
-    return [0, 1].includes(props.index);
-  });
+  const disabledLeft = computed(() => [0, 1].includes(props.index));
 
-  const disabledRight = computed(() => {
-    return props.index === tagList.value.length - 1;
-  });
+  const disabledRight = computed(
+    () => props.index === tagList.value.length - 1
+  );
 
   const tagClose = (tag: TagProps, idx: number) => {
     tabBarStore.deleteTag(idx, tag);
@@ -121,9 +116,8 @@
     }
   };
 
-  const findCurrentRouteIndex = () => {
-    return tagList.value.findIndex((el) => el.fullPath === route.fullPath);
-  };
+  const findCurrentRouteIndex = () =>
+    tagList.value.findIndex((el) => el.fullPath === route.fullPath);
   const actionSelect = async (value: any) => {
     const { itemData, index } = props;
     const copyTagList = [...tagList.value];
@@ -146,9 +140,9 @@
         router.push({ name: itemData.name });
       }
     } else if (value === Eaction.others) {
-      const filterList = tagList.value.filter((el, idx) => {
-        return idx === 0 || idx === props.index;
-      });
+      const filterList = tagList.value.filter(
+        (el, idx) => idx === 0 || idx === props.index
+      );
       tabBarStore.freshTabList(filterList);
       router.push({ name: itemData.name });
     } else if (value === Eaction.reload) {
@@ -172,28 +166,35 @@
     color: var(--color-text-2);
     text-decoration: none;
   }
+
   .link-activated {
     color: rgb(var(--link-6));
+
     .tag-link {
       color: rgb(var(--link-6));
     }
+
     & + .arco-tag-close-btn {
       color: rgb(var(--link-6));
     }
   }
+
   :deep(.arco-dropdown-option-content) {
     span {
       margin-left: 10px;
     }
   }
+
   .arco-dropdown-open {
     .tag-link {
       color: rgb(var(--danger-6));
     }
+
     .arco-tag-close-btn {
       color: rgb(var(--danger-6));
     }
   }
+
   .sperate-line {
     border-bottom: 1px solid var(--color-neutral-3);
   }

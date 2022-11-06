@@ -1,7 +1,7 @@
 <template>
   <a-layout class="layout" :class="{ mobile: appStore.hideMenu }">
     <div v-if="navbar" class="layout-navbar">
-      <NavBar />
+      <nav-bar />
     </div>
     <a-layout>
       <a-layout>
@@ -18,7 +18,7 @@
           @collapse="setCollapsed"
         >
           <div class="menu-wrapper">
-            <Menu />
+            <arco-menu />
           </div>
         </a-layout-sider>
         <a-drawer
@@ -30,14 +30,14 @@
           :closable="false"
           @cancel="drawerCancel"
         >
-          <Menu />
+          <arco-menu />
         </a-drawer>
         <a-layout class="layout-content" :style="paddingStyle">
-          <TabBar v-if="appStore.tabBar" />
+          <tab-bar v-if="appStore.tabBar" />
           <a-layout-content>
-            <PageLayout />
+            <page-layout />
           </a-layout-content>
-          <Footer v-if="footer" />
+          <arco-footer v-if="footer" />
         </a-layout>
       </a-layout>
     </a-layout>
@@ -49,8 +49,8 @@
   import { useRouter, useRoute } from 'vue-router';
   import { useAppStore, useUserStore } from '@/store';
   import NavBar from '@/components/navbar/index.vue';
-  import Menu from '@/components/menu/index.vue';
-  import Footer from '@/components/footer/index.vue';
+  import ArcoMenu from '@/components/menu/index.vue';
+  import ArcoFooter from '@/components/footer/index.vue';
   import TabBar from '@/components/tab-bar/index.vue';
   import usePermission from '@/hooks/permission';
   import useResponsive from '@/hooks/responsive';
@@ -67,12 +67,10 @@
   const renderMenu = computed(() => appStore.menu);
   const hideMenu = computed(() => appStore.hideMenu);
   const footer = computed(() => appStore.footer);
-  const menuWidth = computed(() => {
-    return appStore.menuCollapse ? 48 : appStore.menuWidth;
-  });
-  const collapsed = computed(() => {
-    return appStore.menuCollapse;
-  });
+  const menuWidth = computed(() =>
+    appStore.menuCollapse ? 48 : appStore.menuWidth
+  );
+  const collapsed = computed(() => appStore.menuCollapse);
   const paddingStyle = computed(() => {
     const paddingLeft =
       renderMenu.value && !hideMenu.value
@@ -125,6 +123,7 @@
     z-index: 99;
     height: 100%;
     transition: all 0.2s cubic-bezier(0.34, 0.69, 0.1, 1);
+
     &::after {
       position: absolute;
       top: 0;
@@ -145,6 +144,7 @@
     height: 100%;
     overflow: auto;
     overflow-x: hidden;
+
     :deep(.arco-menu) {
       ::-webkit-scrollbar {
         width: 12px;

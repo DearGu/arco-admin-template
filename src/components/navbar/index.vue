@@ -43,7 +43,7 @@
           </a-button>
         </a-tooltip>
         <a-dropdown trigger="click" @select="changeLocale as any">
-          <div ref="triggerBtn" class="trigger-btn"></div>
+          <div ref="triggerBtn" class="trigger-btn" />
           <template #content>
             <a-doption
               v-for="item in locales"
@@ -97,7 +97,7 @@
           :content-style="{ padding: 0, minWidth: '400px' }"
           content-class="message-popover"
         >
-          <div ref="refBtn" class="ref-btn"></div>
+          <div ref="refBtn" class="ref-btn" />
           <template #content>
             <message-box />
           </template>
@@ -202,12 +202,8 @@
   const { changeLocale } = useLocale();
   const { isFullscreen, toggle: toggleFullScreen } = useFullscreen();
   const locales = [...LOCALE_OPTIONS];
-  const avatar = computed(() => {
-    return userStore.avatar;
-  });
-  const theme = computed(() => {
-    return appStore.theme;
-  });
+  const avatar = computed(() => userStore.avatar);
+  const theme = computed(() => appStore.theme);
   const isDark = useDark({
     selector: 'body',
     attribute: 'arco-theme',
@@ -273,9 +269,11 @@
     display: flex;
     padding-right: 20px;
     list-style: none;
+
     :deep(.locale-select) {
       border-radius: 20px;
     }
+
     li {
       display: flex;
       align-items: center;
@@ -286,16 +284,19 @@
       color: var(--color-text-1);
       text-decoration: none;
     }
+
     .nav-btn {
       border-color: rgb(var(--gray-2));
       color: rgb(var(--gray-8));
       font-size: 16px;
     }
+
     .trigger-btn,
     .ref-btn {
       position: absolute;
       bottom: 14px;
     }
+
     .trigger-btn {
       margin-left: 14px;
     }

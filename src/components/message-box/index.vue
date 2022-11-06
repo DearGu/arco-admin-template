@@ -8,7 +8,7 @@
         <a-result v-if="!renderList.length" status="404">
           <template #subtitle> {{ $t('messageBox.noContent') }} </template>
         </a-result>
-        <List
+        <list
           :render-list="renderList"
           :unread-count="unreadCount"
           @item-click="handleItemClick"
@@ -26,12 +26,8 @@
 <script lang="ts" setup>
   import { ref, reactive, toRefs, computed } from 'vue';
   import { useI18n } from 'vue-i18n';
-  import {
-    queryMessageList,
-    setMessageStatus,
-    MessageRecord,
-    MessageListType,
-  } from '@/api/message';
+  import type { MessageRecord, MessageListType } from '@/api/message';
+  import { queryMessageList, setMessageStatus } from '@/api/message';
   import useLoading from '@/hooks/loading';
   import List from './list.vue';
 
@@ -81,14 +77,12 @@
     await setMessageStatus({ ids });
     fetchSourceData();
   }
-  const renderList = computed(() => {
-    return messageData.messageList.filter(
-      (item) => messageType.value === item.type
-    );
-  });
-  const unreadCount = computed(() => {
-    return renderList.value.filter((item) => !item.status).length;
-  });
+  const renderList = computed(() =>
+    messageData.messageList.filter((item) => messageType.value === item.type)
+  );
+  const unreadCount = computed(
+    () => renderList.value.filter((item) => !item.status).length
+  );
   const getUnreadList = (type: string) => {
     const list = messageData.messageList.filter(
       (item) => item.type === type && !item.status
@@ -116,12 +110,15 @@
   :deep(.arco-list-item-meta) {
     align-items: flex-start;
   }
+
   :deep(.arco-tabs-nav) {
     padding: 14px 0 12px 16px;
     border-bottom: 1px solid var(--color-neutral-3);
   }
+
   :deep(.arco-tabs-content) {
     padding-top: 0;
+
     .arco-result-subtitle {
       color: rgb(var(--gray-6));
     }
